@@ -7,6 +7,7 @@ import (
 )
 
 var logger = logrus.New()
+var Entry = logrus.NewEntry(Logger)
 var WithField = logger.WithField
 var Info = logger.Info
 var Warn = logger.Warn
@@ -30,11 +31,12 @@ func GetLogger() *logrus.Logger {
 }
 
 func init() {
-	logger = logrus.New()
 	if runtime.GOOS != "linux" {
 		// 本地调试
 		logger.SetFormatter(&logrus.TextFormatter{
-			ForceColors: true,
+			FullTimestamp:   true,
+			TimestampFormat: "2006-01-02 15:04:05.000",
+			ForceColors:     true,
 		})
 	} else {
 		logger.SetFormatter(&ecslogrus.Formatter{})
