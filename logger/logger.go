@@ -7,7 +7,7 @@ import (
 )
 
 var logger = logrus.New()
-var Entry = logrus.NewEntry(Logger)
+var Entry = logrus.NewEntry(logger)
 var WithField = logger.WithField
 var Info = logger.Info
 var Warn = logger.Warn
