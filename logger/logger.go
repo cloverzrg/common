@@ -4,6 +4,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"go.elastic.co/ecslogrus"
 	"runtime"
+	"os"
 )
 
 var logger = logrus.New()
@@ -31,7 +32,7 @@ func GetLogger() *logrus.Logger {
 }
 
 func init() {
-	if runtime.GOOS != "linux" {
+	if runtime.GOOS != "linux" || os.Getenv("LOGGER_FORMATTER") == "TextFormatter" {
 		// 本地调试
 		logger.SetFormatter(&logrus.TextFormatter{
 			FullTimestamp:   true,
