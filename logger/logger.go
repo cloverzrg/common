@@ -32,17 +32,22 @@ func GetLogger() *logrus.Logger {
 }
 
 func init() {
-	if runtime.GOOS != "linux" || os.Getenv("LOGGER_FORMATTER") == "TextFormatter" {
-		// 本地调试
-		logger.SetFormatter(&logrus.TextFormatter{
-			FullTimestamp:   true,
-			TimestampFormat: "2006-01-02 15:04:05.000",
-			ForceColors:     true,
-		})
-	} else {
-		logger.SetFormatter(&ecslogrus.Formatter{})
-		logger.ReportCaller = true
-	}
+	// if runtime.GOOS != "linux" || os.Getenv("LOGGER_FORMATTER") == "TextFormatter" {
+	// 	// 本地调试
+	// 	logger.SetFormatter(&logrus.TextFormatter{
+	// 		FullTimestamp:   true,
+	// 		TimestampFormat: "2006-01-02 15:04:05.000",
+	// 		ForceColors:     true,
+	// 	})
+	// } else {
+	// 	logger.SetFormatter(&ecslogrus.Formatter{})
+	// 	logger.ReportCaller = true
+	// }
+	logger.SetFormatter(&logrus.TextFormatter{
+		FullTimestamp:   true,
+		TimestampFormat: "2006-01-02 15:04:05.000",
+		ForceColors:     true,
+	})
 
 	updateEntry()
 }
