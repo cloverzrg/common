@@ -2,9 +2,6 @@ package logger
 
 import (
 	"github.com/sirupsen/logrus"
-	"go.elastic.co/ecslogrus"
-	"runtime"
-	"os"
 )
 
 var logger = logrus.New()
